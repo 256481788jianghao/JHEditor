@@ -14,6 +14,7 @@ namespace JHEditor
     public partial class FormMain : Form
     {
         JHDirectoryMgr directoryMgr = new JHDirectoryMgr();
+        FilesMgr filesMgr = new FilesMgr();
 
 
         public FormMain()
@@ -35,7 +36,9 @@ namespace JHEditor
 
         private void treeView_search_list_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            Console.WriteLine("clicknode " + e.Node.FullPath+" level:"+e.Node.Level);
+            Console.WriteLine("clicknode " + e.Node.FullPath+" level:"+e.Node.Level+" file:"+File.Exists(e.Node.FullPath.Replace(@"我的电脑\", "")));
+
+
             
         }
 
@@ -58,6 +61,36 @@ namespace JHEditor
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void treeView_search_list_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string filepath = e.Node.FullPath.Replace(@"我的电脑\", "");
+            Console.WriteLine("doubleclicknode " + e.Node.FullPath + " level:" + e.Node.Level + " file:" + File.Exists(filepath));
+            if(File.Exists(filepath))
+            {
+                try
+                {
+                    if (filesMgr.IsFileItemOpen(filepath)) { return; }
+
+                    
+                    RichTextBox box = new RichTextBox();
+                    box.Dock = DockStyle.Fill;
+                    TabPage page = new TabPage();
+                    page.Name = "Context_" + Path.GetFileNameWithoutExtension(filepath);
+                    page.Text = Path.GetFileNameWithoutExtension(filepath);
+                    page.Controls.Add(box);
+                    tabControl_Context.TabPages.Add(page);
+                    FileItem item = new FileItem(page, box, filepath);
+                    box.Text = item.GetContext();
+                    filesMgr.FileList.Add(item);
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
     }

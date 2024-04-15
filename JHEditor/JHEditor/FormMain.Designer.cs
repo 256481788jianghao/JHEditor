@@ -30,16 +30,13 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl_Context = new System.Windows.Forms.TabControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeView_search_list = new System.Windows.Forms.TreeView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.panel1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,43 +55,21 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.tabControl1);
+            this.panel1.Controls.Add(this.tabControl_Context);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(603, 426);
             this.panel1.TabIndex = 1;
             // 
-            // tabControl1
+            // tabControl_Context
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(603, 426);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(595, 400);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(595, 400);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabControl_Context.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl_Context.Location = new System.Drawing.Point(0, 0);
+            this.tabControl_Context.Name = "tabControl_Context";
+            this.tabControl_Context.SelectedIndex = 0;
+            this.tabControl_Context.Size = new System.Drawing.Size(603, 426);
+            this.tabControl_Context.TabIndex = 0;
             // 
             // splitContainer1
             // 
@@ -144,6 +119,7 @@
             this.treeView_search_list.TabIndex = 0;
             this.treeView_search_list.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView_search_list_BeforeExpand);
             this.treeView_search_list.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_search_list_NodeMouseClick);
+            this.treeView_search_list.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_search_list_NodeMouseDoubleClick);
             // 
             // tabPage4
             // 
@@ -167,7 +143,6 @@
             this.Text = "JHEditor";
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.panel1.ResumeLayout(false);
-            this.tabControl1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -183,9 +158,7 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl tabControl_Context;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
