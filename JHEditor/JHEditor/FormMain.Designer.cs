@@ -28,21 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tabControl_Context = new System.Windows.Forms.TabControl();
+            this.panel_Context = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.treeView_search_list = new System.Windows.Forms.TreeView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.panel1.SuspendLayout();
+            this.contextMenuStrip_mulutreeview = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.contextMenuStrip_mulutreeview.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -53,23 +55,13 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // panel1
+            // panel_Context
             // 
-            this.panel1.Controls.Add(this.tabControl_Context);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(603, 426);
-            this.panel1.TabIndex = 1;
-            // 
-            // tabControl_Context
-            // 
-            this.tabControl_Context.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl_Context.Location = new System.Drawing.Point(0, 0);
-            this.tabControl_Context.Name = "tabControl_Context";
-            this.tabControl_Context.SelectedIndex = 0;
-            this.tabControl_Context.Size = new System.Drawing.Size(603, 426);
-            this.tabControl_Context.TabIndex = 0;
+            this.panel_Context.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Context.Location = new System.Drawing.Point(0, 0);
+            this.panel_Context.Name = "panel_Context";
+            this.panel_Context.Size = new System.Drawing.Size(603, 426);
+            this.panel_Context.TabIndex = 1;
             // 
             // splitContainer1
             // 
@@ -83,7 +75,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Panel2.Controls.Add(this.panel_Context);
             this.splitContainer1.Size = new System.Drawing.Size(800, 426);
             this.splitContainer1.SplitterDistance = 193;
             this.splitContainer1.TabIndex = 3;
@@ -112,6 +104,7 @@
             // 
             // treeView_search_list
             // 
+            this.treeView_search_list.ContextMenuStrip = this.contextMenuStrip_mulutreeview;
             this.treeView_search_list.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView_search_list.Location = new System.Drawing.Point(3, 3);
             this.treeView_search_list.Name = "treeView_search_list";
@@ -131,6 +124,20 @@
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // contextMenuStrip_mulutreeview
+            // 
+            this.contextMenuStrip_mulutreeview.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新建ToolStripMenuItem});
+            this.contextMenuStrip_mulutreeview.Name = "contextMenuStrip_mulutreeview";
+            this.contextMenuStrip_mulutreeview.Size = new System.Drawing.Size(181, 48);
+            // 
+            // 新建ToolStripMenuItem
+            // 
+            this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新建ToolStripMenuItem.Text = "新建";
+            this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -142,13 +149,13 @@
             this.Name = "FormMain";
             this.Text = "JHEditor";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.contextMenuStrip_mulutreeview.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -157,13 +164,14 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TabControl tabControl_Context;
+        private System.Windows.Forms.Panel panel_Context;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabControl tabControl2;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TreeView treeView_search_list;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip_mulutreeview;
+        private System.Windows.Forms.ToolStripMenuItem 新建ToolStripMenuItem;
     }
 }
 

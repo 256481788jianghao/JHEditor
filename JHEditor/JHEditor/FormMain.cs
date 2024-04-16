@@ -16,10 +16,32 @@ namespace JHEditor
         JHDirectoryMgr directoryMgr = new JHDirectoryMgr();
         FilesMgr filesMgr = new FilesMgr();
 
+        JHContextTabControl tabControl_Context;
 
         public FormMain()
         {
             InitializeComponent();
+
+            tabControl_Context = new JHContextTabControl();
+            tabControl_Context.Dock = DockStyle.Fill;
+            tabControl_Context.OnMouseOhterClickEvt += new JHContextTabControl.OnMouseOhterClickHandle(ClickTabPageTitleHandler);
+            panel_Context.Controls.Add(tabControl_Context);
+        }
+
+        private void ClickTabPageTitleHandler(int index,bool isclose)
+        {
+            if(index >= 0)
+            {
+                TabPage Page = tabControl_Context.TabPages[index];
+                if(Page != null)
+                {
+                    if (isclose)
+                    {
+                        filesMgr.RemoveItem(filesMgr.FindItemByTabPage(Page).fullPath);
+                        tabControl_Context.TabPages.Remove(Page);
+                    }
+                }
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -79,7 +101,7 @@ namespace JHEditor
                     box.Dock = DockStyle.Fill;
                     TabPage page = new TabPage();
                     page.Name = "Context_" + Path.GetFileNameWithoutExtension(filepath);
-                    page.Text = Path.GetFileNameWithoutExtension(filepath);
+                    page.Text = Path.GetFileNameWithoutExtension(filepath)+"    X";
                     page.Controls.Add(box);
                     tabControl_Context.TabPages.Add(page);
                     FileItem item = new FileItem(page, box, filepath);
@@ -91,6 +113,15 @@ namespace JHEditor
                 {
                     MessageBox.Show(ex.ToString());
                 }
+            }
+        }
+
+        private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog diag = new SaveFileDialog();
+            if(diag.ShowDialog() == DialogResult.OK)
+            {
+                File.WriteAllText(diag.FileName, "");
             }
         }
     }
