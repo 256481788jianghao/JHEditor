@@ -13,8 +13,7 @@ namespace JHEditor
 {
     public partial class FormMain : Form
     {
-        JHDirectoryMgr directoryMgr = new JHDirectoryMgr();
-        FilesMgr filesMgr = new FilesMgr();
+        
 
         JHContextTabControl tabControl_Context;
 
@@ -37,8 +36,20 @@ namespace JHEditor
                 {
                     if (isclose)
                     {
-                        filesMgr.RemoveItem(filesMgr.FindItemByTabPage(Page).fullPath);
+                        FileItem item = GVL.filesMgr.FindItemByTabPage(Page);
+                        if(item.IsNeedSave)
+                        {
+                            if(MessageBox.Show("保存修改吗?","提示",MessageBoxButtons.OKCancel) == DialogResult.OK)
+                            {
+                                item.SaveContext();
+                            }
+                        }
+                        GVL.filesMgr.RemoveItem(item.fullPath);
                         tabControl_Context.TabPages.Remove(Page);
+                    }
+                    else
+                    {
+                        GVL.filesMgr.SetFocusFileItemByTabpage(Page);
                     }
                 }
             }
@@ -48,7 +59,7 @@ namespace JHEditor
         {
             try
             {
-                treeView_search_list.Nodes.Add(directoryMgr.GetTreeRoot());
+                treeView_search_list.Nodes.Add(GVL.directoryMgr.GetTreeRoot());
             }
             catch(Exception ex)
             {
@@ -75,7 +86,7 @@ namespace JHEditor
                     if (Directory.Exists(startpath))
                     {
                         e.Node.Nodes.Clear();
-                        List<TreeNode> nodes = directoryMgr.GetSubNodes(startpath);
+                        List<TreeNode> nodes = GVL.directoryMgr.GetSubNodes(startpath);
                         e.Node.Nodes.AddRange(nodes.ToArray());
                     }
                 }
@@ -94,11 +105,13 @@ namespace JHEditor
             {
                 try
                 {
-                    if (filesMgr.IsFileItemOpen(filepath)) { return; }
+                    if (GVL.filesMgr.IsFileItemOpen(filepath)) { return; }
 
                     
                     RichTextBox box = new RichTextBox();
                     box.Dock = DockStyle.Fill;
+                    box.TextChanged += new EventHandler(RichTextContextChangeCallBack);
+                    box.KeyDown += new KeyEventHandler(RichTextBoxKeyDown);
                     TabPage page = new TabPage();
                     page.Name = "Context_" + Path.GetFileNameWithoutExtension(filepath);
                     page.Text = Path.GetFileNameWithoutExtension(filepath)+"    X";
@@ -106,7 +119,7 @@ namespace JHEditor
                     tabControl_Context.TabPages.Add(page);
                     FileItem item = new FileItem(page, box, filepath);
                     box.Text = item.GetContext();
-                    filesMgr.FileList.Add(item);
+                    GVL.filesMgr.FileList.Add(item);
 
                 }
                 catch(Exception ex)
@@ -116,12 +129,43 @@ namespace JHEditor
             }
         }
 
+        private void RichTextBoxKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == (Keys.Control | Keys.S))
+            {
+                Console.WriteLine("rich save");
+                FileItem item = GVL.filesMgr.FindItemByRichTextBox((RichTextBox)sender);
+                item.SaveContext();
+                tabControl_Context.Invalidate();
+            }
+        }
+
+        private void RichTextContextChangeCallBack(object sender,EventArgs e)
+        {
+            FileItem selectItem = GVL.filesMgr.FindItemByRichTextBox((RichTextBox)sender);
+            if(selectItem != null) { selectItem.IsNeedSave = true; }
+            tabControl_Context.Invalidate();
+        }
+
         private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog diag = new SaveFileDialog();
             if(diag.ShowDialog() == DialogResult.OK)
             {
                 File.WriteAllText(diag.FileName, "");
+            }
+        }
+
+        private void FormMain_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyData ==(Keys.Control | Keys.C))
+            {
+                Console.WriteLine("form copy");
             }
         }
     }

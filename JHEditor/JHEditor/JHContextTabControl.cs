@@ -27,6 +27,17 @@ namespace JHEditor
             if (e.Index == this.SelectedIndex)    //当前选中的Tab页，设置不同的样式以示选中
             {
                 Brush selected_color = Brushes.SteelBlue; //选中的项的背景色
+
+                FileItem fitem = GVL.filesMgr.FindItemByTabPage(TabPages[e.Index]);
+                if(fitem != null)
+                {
+                    if (fitem.IsNeedSave)
+                    {
+                        selected_color = Brushes.LightPink;
+                    }
+                }
+
+
                 g.FillRectangle(selected_color, r); //改变选项卡标签的背景色
                 string title = this.TabPages[e.Index].Text;
                 g.DrawString(title, this.Font, new SolidBrush(Color.Black), new PointF(r.X, r.Y + 5));//PointF选项卡标题的位置

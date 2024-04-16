@@ -54,6 +54,7 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GVL.cs" />
     <Compile Include="JHContextTabControl.cs">
       <SubType>Component</SubType>
     </Compile>

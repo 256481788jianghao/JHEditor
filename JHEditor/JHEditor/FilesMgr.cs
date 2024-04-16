@@ -26,9 +26,29 @@ namespace JHEditor
             return FileList.Find(i => i.fullPath == fullpath);
         }
 
+        public FileItem FindItemByRichTextBox(RichTextBox rich)
+        {
+            return FileList.Find(i => i.relativeRichTextBox == rich);
+        }
+
         public void RemoveItem(string fullPath)
         {
             FileList.RemoveAll(i => i.fullPath == fullPath);
+        }
+
+        public void SetFocusFileItemByTabpage(TabPage page)
+        {
+            foreach(FileItem item in FileList)
+            {
+                if(item.relativeTabPage == page)
+                {
+                    item.IsFocus = true;
+                }
+                else
+                {
+                    item.IsFocus = false;
+                }
+            }
         }
     }
 }
