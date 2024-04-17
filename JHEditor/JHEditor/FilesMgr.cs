@@ -16,6 +16,11 @@ namespace JHEditor
             return FileList.Any(i => i.fullPath == fullPath);
         }
 
+        public FileItem GetFocusItem()
+        {
+            return FileList.Find(i => i.IsFocus == true);
+        }
+
         public FileItem FindItemByTabPage(TabPage page)
         {
             return FileList.Find(i =>i.relativeTabPage == page);

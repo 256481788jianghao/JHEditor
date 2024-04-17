@@ -59,6 +59,7 @@ namespace JHEditor
         {
             try
             {
+                GVL.InitConfigParam();
                 treeView_search_list.Nodes.Add(GVL.directoryMgr.GetTreeRoot());
             }
             catch(Exception ex)
@@ -110,6 +111,12 @@ namespace JHEditor
                     
                     RichTextBox box = new RichTextBox();
                     box.Dock = DockStyle.Fill;
+                    box.ContextMenuStrip = contextMenuStrip_richbox;
+                    if(GVL.ConfigParam.defaultFont != null)
+                    {
+                        box.Font = GVL.ConfigParam.defaultFont;
+                    }
+
                     box.TextChanged += new EventHandler(RichTextContextChangeCallBack);
                     box.KeyDown += new KeyEventHandler(RichTextBoxKeyDown);
                     TabPage page = new TabPage();
@@ -120,6 +127,12 @@ namespace JHEditor
                     FileItem item = new FileItem(page, box, filepath);
                     box.Text = item.GetContext();
                     GVL.filesMgr.FileList.Add(item);
+                    if(GVL.filesMgr.FileList.Count  == 1)
+                    {
+                        //当只有一个page的时候，这个page就是focus的
+                        GVL.filesMgr.SetFocusFileItemByTabpage(page);
+                    }
+                    
 
                 }
                 catch(Exception ex)
@@ -166,6 +179,32 @@ namespace JHEditor
             if(e.KeyData ==(Keys.Control | Keys.C))
             {
                 Console.WriteLine("form copy");
+            }
+        }
+
+        private void contextMenuStrip_richbox_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void 字体设置ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog dialog = new FontDialog();
+            if(dialog.ShowDialog() == DialogResult.OK)
+            {
+                GVL.filesMgr.GetFocusItem().relativeRichTextBox.Font = dialog.Font;
+                GVL.filesMgr.GetFocusItem().relativeRichTextBox.Invalidate();
+            }
+
+        }
+
+        private void 字体ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontDialog dialog = new FontDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                GVL.ConfigParam.defaultFont = dialog.Font;
+                GVL.SaveConfigParam();
             }
         }
     }
