@@ -63,6 +63,8 @@ namespace JHEditor
                 GVL.InitConfigParam();
                 
                 treeView_search_list.Nodes.Add(GVL.directoryMgr.GetTreeRoot());
+
+                timer_main.Start();
             }
             catch(Exception ex)
             {
@@ -293,6 +295,16 @@ namespace JHEditor
             FileItem item = GVL.filesMgr.GetFocusItem();
             item.IsBinFile = false;
             item.relativeRichTextBox.Text = item.GetContext();
+        }
+
+        private void timer_main_Tick(object sender, EventArgs e)
+        {
+            Console.WriteLine("save...");
+            foreach(FileItem item in GVL.filesMgr.FileList)
+            {
+                item.SaveContext();
+            }
+            tabControl_Context.Invalidate();
         }
     }
 }
