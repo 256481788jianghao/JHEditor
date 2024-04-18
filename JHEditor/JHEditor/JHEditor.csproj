@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigParam.cs" />
+    <Compile Include="DESKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DESKeyForm.Designer.cs">
+      <DependentUpon>DESKeyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FileItem.cs" />
     <Compile Include="FilesMgr.cs" />
     <Compile Include="FormMain.cs">
@@ -65,6 +71,9 @@
     <Compile Include="JHDirectoryMgr.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DESKeyForm.resx">
+      <DependentUpon>DESKeyForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>

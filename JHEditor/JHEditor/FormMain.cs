@@ -125,29 +125,47 @@ namespace JHEditor
                     page.Name = "Context_" + Path.GetFileNameWithoutExtension(filepath);
                     page.Text = Path.GetFileNameWithoutExtension(filepath)+"    X";
                     page.Controls.Add(box);
-                    tabControl_Context.TabPages.Add(page);
-                    Encoding encoding = Encoding.UTF8;
-                    if(GVL.ConfigParam.defaultEncoding != null)
-                    {
-                        encoding = GVL.ConfigParam.defaultEncoding;
-                    }
-
-                    FileItem item = new FileItem(page, box, filepath, encoding);
-                    box.Text = item.GetContext();
-                    GVL.filesMgr.FileList.Add(item);
-                    if(GVL.filesMgr.FileList.Count  == 1)
-                    {
-                        //当只有一个page的时候，这个page就是focus的
-                        GVL.filesMgr.SetFocusFileItemByTabpage(page);
-                    }
                     
+                    Encoding encoding = Encoding.UTF8;
+                    encoding = GVL.ConfigParam.GetEncoding();
+                    FileItem item = new FileItem(page, box, filepath, encoding);
 
+                    if (item.IsCryptoFile)
+                    {
+                        DESKeyForm form = new DESKeyForm();
+                        form.relativeFileItem = item;
+                        form.FinishKeyEnterEvent += new DESKeyForm.FinishKeyEnterHandle(FinishKeyEnterCallBack);
+                        form.ShowDialog();
+                    }
+                    else
+                    {
+                        AddPageToTabControl(item);
+                    } 
                 }
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
             }
+        }
+        private void FinishKeyEnterCallBack(FileItem item)
+        {
+            //item.relativeRichTextBox.Invoke(new Action(() =>
+           // {
+                AddPageToTabControl(item);
+           // }));
+        }
+
+        private void AddPageToTabControl(FileItem item)
+        {
+            item.relativeRichTextBox.Text = item.GetContext();
+            GVL.filesMgr.FileList.Add(item);
+            if (GVL.filesMgr.FileList.Count == 1)
+            {
+                //当只有一个page的时候，这个page就是focus的
+                GVL.filesMgr.SetFocusFileItemByTabpage(item.relativeTabPage);
+            }
+            tabControl_Context.TabPages.Add(item.relativeTabPage);
         }
 
         private void RichTextBoxKeyDown(object sender, KeyEventArgs e)
@@ -170,11 +188,7 @@ namespace JHEditor
 
         private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog diag = new SaveFileDialog();
-            if(diag.ShowDialog() == DialogResult.OK)
-            {
-                File.WriteAllText(diag.FileName, "");
-            }
+            
         }
 
         private void FormMain_KeyPress(object sender, KeyPressEventArgs e)
@@ -218,26 +232,47 @@ namespace JHEditor
 
         private void uTF8ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GVL.ConfigParam.defaultEncoding = Encoding.UTF8;
+            GVL.ConfigParam.defaultEncoding = ConfigParam.JHEncoding.utf8;
             GVL.SaveConfigParam();
         }
 
         private void uTF16ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GVL.ConfigParam.defaultEncoding = Encoding.Unicode;
+            GVL.ConfigParam.defaultEncoding = ConfigParam.JHEncoding.utf16;
             GVL.SaveConfigParam();
         }
 
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GVL.ConfigParam.defaultEncoding = Encoding.GetEncoding("gbk");
+            GVL.ConfigParam.defaultEncoding = ConfigParam.JHEncoding.gbk;
             GVL.SaveConfigParam();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            GVL.ConfigParam.defaultEncoding = Encoding.ASCII;
+            GVL.ConfigParam.defaultEncoding = ConfigParam.JHEncoding.ascii;
             GVL.SaveConfigParam();
+        }
+
+        private void 普通文本ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog diag = new SaveFileDialog();
+            if (diag.ShowDialog() == DialogResult.OK)
+            {
+                GVL.directoryMgr.InserFileNode(diag.FileName);
+                File.WriteAllText(diag.FileName, "");
+            }
+        }
+
+        private void 加密文本ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog diag = new SaveFileDialog();
+            diag.Filter = "加密|*.jhf";
+            if (diag.ShowDialog() == DialogResult.OK)
+            {
+                GVL.directoryMgr.InserFileNode(diag.FileName);
+                File.WriteAllText(diag.FileName, "");
+            }
         }
     }
 }

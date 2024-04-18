@@ -49,6 +49,8 @@
             this.uTF16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aSCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.普通文本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.加密文本ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -134,12 +136,15 @@
             this.contextMenuStrip_mulutreeview.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.新建ToolStripMenuItem});
             this.contextMenuStrip_mulutreeview.Name = "contextMenuStrip_mulutreeview";
-            this.contextMenuStrip_mulutreeview.Size = new System.Drawing.Size(101, 26);
+            this.contextMenuStrip_mulutreeview.Size = new System.Drawing.Size(181, 48);
             // 
             // 新建ToolStripMenuItem
             // 
+            this.新建ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.普通文本ToolStripMenuItem,
+            this.加密文本ToolStripMenuItem});
             this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.新建ToolStripMenuItem.Text = "新建";
             this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
             // 
@@ -239,6 +244,20 @@
             this.aSCIIToolStripMenuItem.Text = "ASCII";
             this.aSCIIToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
+            // 普通文本ToolStripMenuItem
+            // 
+            this.普通文本ToolStripMenuItem.Name = "普通文本ToolStripMenuItem";
+            this.普通文本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.普通文本ToolStripMenuItem.Text = "普通文本";
+            this.普通文本ToolStripMenuItem.Click += new System.EventHandler(this.普通文本ToolStripMenuItem_Click);
+            // 
+            // 加密文本ToolStripMenuItem
+            // 
+            this.加密文本ToolStripMenuItem.Name = "加密文本ToolStripMenuItem";
+            this.加密文本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.加密文本ToolStripMenuItem.Text = "加密文本";
+            this.加密文本ToolStripMenuItem.Click += new System.EventHandler(this.加密文本ToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -289,6 +308,8 @@
         private System.Windows.Forms.ToolStripMenuItem uTF16ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gBKToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aSCIIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 普通文本ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 加密文本ToolStripMenuItem;
     }
 }
 

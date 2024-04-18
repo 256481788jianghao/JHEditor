@@ -36,6 +36,50 @@ namespace JHEditor
             return paths;
         }
 
+        public void InserFileNode(string filepath)
+        {
+            string path = Path.GetDirectoryName(filepath);
+            TreeNode ans = FindParentNodeByPath(path, TreeRoot);
+            if(ans != null)
+            {
+                ans.Nodes.Add(new TreeNode(Path.GetFileName(filepath)));
+            }
+        }
+
+        private TreeNode FindParentNodeByPath(string path,TreeNode startNode)
+        {
+            string nodepath = startNode.FullPath.Replace(@"我的电脑\","");
+
+            if(nodepath == path)
+            {
+                return startNode;
+            }
+            else
+            {
+                if(startNode.Nodes.Count > 0)
+                {
+                    TreeNode ans = null;
+                    foreach(TreeNode item in startNode.Nodes)
+                    {
+                        ans = FindParentNodeByPath(path, item);
+                        if(ans == null)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    return ans;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
         public TreeNode GetTreeRoot()
         {
             try
