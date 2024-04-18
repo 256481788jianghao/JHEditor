@@ -177,6 +177,12 @@ namespace JHEditor
                 item.SaveContext();
                 tabControl_Context.Invalidate();
             }
+            else if (e.KeyData == (Keys.Control | Keys.F))
+            {
+                RichTextBox bb = (RichTextBox)sender;
+                MessageBox.Show(bb.SelectedText);
+                FileItem item = GVL.filesMgr.FindItemByRichTextBox(bb);
+            }
         }
 
         private void RichTextContextChangeCallBack(object sender,EventArgs e)
@@ -273,6 +279,20 @@ namespace JHEditor
                 GVL.directoryMgr.InserFileNode(diag.FileName);
                 File.WriteAllText(diag.FileName, "");
             }
+        }
+
+        private void binFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileItem item = GVL.filesMgr.GetFocusItem();
+            item.IsBinFile = true;
+            item.relativeRichTextBox.Text = item.GetContext();
+        }
+
+        private void sourceFormatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileItem item = GVL.filesMgr.GetFocusItem();
+            item.IsBinFile = false;
+            item.relativeRichTextBox.Text = item.GetContext();
         }
     }
 }
