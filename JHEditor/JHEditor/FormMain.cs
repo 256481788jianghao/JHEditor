@@ -64,7 +64,7 @@ namespace JHEditor
                 
                 treeView_search_list.Nodes.Add(GVL.directoryMgr.GetTreeRoot());
 
-                timer_main.Start();
+                //timer_main.Start();
             }
             catch(Exception ex)
             {
