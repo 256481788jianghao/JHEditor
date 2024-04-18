@@ -56,6 +56,8 @@
             this.sourceFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer_main = new System.Windows.Forms.Timer(this.components);
             this.toolStripMenuItem_timer = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartTimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StopTimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -295,9 +297,26 @@
             // 
             // toolStripMenuItem_timer
             // 
+            this.toolStripMenuItem_timer.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StartTimerToolStripMenuItem,
+            this.StopTimerToolStripMenuItem});
             this.toolStripMenuItem_timer.Name = "toolStripMenuItem_timer";
             this.toolStripMenuItem_timer.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem_timer.Text = "自动保存";
+            // 
+            // StartTimerToolStripMenuItem
+            // 
+            this.StartTimerToolStripMenuItem.Name = "StartTimerToolStripMenuItem";
+            this.StartTimerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.StartTimerToolStripMenuItem.Text = "开启";
+            this.StartTimerToolStripMenuItem.Click += new System.EventHandler(this.StartTimerToolStripMenuItem_Click);
+            // 
+            // StopTimerToolStripMenuItem
+            // 
+            this.StopTimerToolStripMenuItem.Name = "StopTimerToolStripMenuItem";
+            this.StopTimerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.StopTimerToolStripMenuItem.Text = "停止";
+            this.StopTimerToolStripMenuItem.Click += new System.EventHandler(this.StopTimerToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -356,6 +375,8 @@
         private System.Windows.Forms.ToolStripMenuItem sourceFormatToolStripMenuItem;
         private System.Windows.Forms.Timer timer_main;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_timer;
+        private System.Windows.Forms.ToolStripMenuItem StartTimerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StopTimerToolStripMenuItem;
     }
 }
 

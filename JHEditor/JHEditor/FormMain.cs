@@ -306,5 +306,15 @@ namespace JHEditor
             }
             tabControl_Context.Invalidate();
         }
+
+        private void StartTimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer_main.Start();
+        }
+
+        private void StopTimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            timer_main.Stop();
+        }
     }
 }
