@@ -14,21 +14,24 @@ namespace JHEditor
         public RichTextBox relativeRichTextBox;
         public string fullPath;
 
+        public Encoding encoding;
+
         public bool IsFocus;
         public bool IsNeedSave;
 
-        public FileItem(TabPage relativeTabPage, RichTextBox relativeRichTextBox, string fullPath)
+        public FileItem(TabPage relativeTabPage, RichTextBox relativeRichTextBox, string fullPath,Encoding encoding)
         {
             this.relativeTabPage = relativeTabPage;
             this.relativeRichTextBox = relativeRichTextBox;
             this.fullPath = fullPath;
             this.IsFocus = false;
             this.IsNeedSave = false;
+            this.encoding = encoding;
         }
 
         public string GetContext()
         {
-            return File.ReadAllText(fullPath);
+            return File.ReadAllText(fullPath, encoding);
         }
 
         public void SaveContext()

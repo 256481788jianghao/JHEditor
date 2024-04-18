@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace JHEditor
 {
@@ -60,6 +61,7 @@ namespace JHEditor
             try
             {
                 GVL.InitConfigParam();
+                
                 treeView_search_list.Nodes.Add(GVL.directoryMgr.GetTreeRoot());
             }
             catch(Exception ex)
@@ -124,7 +126,13 @@ namespace JHEditor
                     page.Text = Path.GetFileNameWithoutExtension(filepath)+"    X";
                     page.Controls.Add(box);
                     tabControl_Context.TabPages.Add(page);
-                    FileItem item = new FileItem(page, box, filepath);
+                    Encoding encoding = Encoding.UTF8;
+                    if(GVL.ConfigParam.defaultEncoding != null)
+                    {
+                        encoding = GVL.ConfigParam.defaultEncoding;
+                    }
+
+                    FileItem item = new FileItem(page, box, filepath, encoding);
                     box.Text = item.GetContext();
                     GVL.filesMgr.FileList.Add(item);
                     if(GVL.filesMgr.FileList.Count  == 1)
@@ -206,6 +214,30 @@ namespace JHEditor
                 GVL.ConfigParam.defaultFont = dialog.Font;
                 GVL.SaveConfigParam();
             }
+        }
+
+        private void uTF8ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GVL.ConfigParam.defaultEncoding = Encoding.UTF8;
+            GVL.SaveConfigParam();
+        }
+
+        private void uTF16ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GVL.ConfigParam.defaultEncoding = Encoding.Unicode;
+            GVL.SaveConfigParam();
+        }
+
+        private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GVL.ConfigParam.defaultEncoding = Encoding.GetEncoding("gbk");
+            GVL.SaveConfigParam();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            GVL.ConfigParam.defaultEncoding = Encoding.ASCII;
+            GVL.SaveConfigParam();
         }
     }
 }

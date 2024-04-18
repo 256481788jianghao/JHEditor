@@ -44,6 +44,11 @@
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.默认参数ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.字体ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultEncodingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uTF16ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aSCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -161,7 +166,7 @@
             this.文本ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.字体设置ToolStripMenuItem});
             this.文本ToolStripMenuItem.Name = "文本ToolStripMenuItem";
-            this.文本ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.文本ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.文本ToolStripMenuItem.Text = "文本";
             // 
             // 字体设置ToolStripMenuItem
@@ -182,7 +187,8 @@
             // 默认参数ToolStripMenuItem
             // 
             this.默认参数ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.字体ToolStripMenuItem});
+            this.字体ToolStripMenuItem,
+            this.defaultEncodingToolStripMenuItem});
             this.默认参数ToolStripMenuItem.Name = "默认参数ToolStripMenuItem";
             this.默认参数ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.默认参数ToolStripMenuItem.Text = "默认参数";
@@ -193,6 +199,45 @@
             this.字体ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.字体ToolStripMenuItem.Text = "默认字体";
             this.字体ToolStripMenuItem.Click += new System.EventHandler(this.字体ToolStripMenuItem_Click);
+            // 
+            // defaultEncodingToolStripMenuItem
+            // 
+            this.defaultEncodingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aSCIIToolStripMenuItem,
+            this.uTF8ToolStripMenuItem,
+            this.uTF16ToolStripMenuItem,
+            this.gBKToolStripMenuItem});
+            this.defaultEncodingToolStripMenuItem.Name = "defaultEncodingToolStripMenuItem";
+            this.defaultEncodingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.defaultEncodingToolStripMenuItem.Text = "默认编码";
+            // 
+            // uTF8ToolStripMenuItem
+            // 
+            this.uTF8ToolStripMenuItem.Name = "uTF8ToolStripMenuItem";
+            this.uTF8ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uTF8ToolStripMenuItem.Text = "UTF8";
+            this.uTF8ToolStripMenuItem.Click += new System.EventHandler(this.uTF8ToolStripMenuItem_Click);
+            // 
+            // uTF16ToolStripMenuItem
+            // 
+            this.uTF16ToolStripMenuItem.Name = "uTF16ToolStripMenuItem";
+            this.uTF16ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.uTF16ToolStripMenuItem.Text = "UTF16";
+            this.uTF16ToolStripMenuItem.Click += new System.EventHandler(this.uTF16ToolStripMenuItem_Click);
+            // 
+            // gBKToolStripMenuItem
+            // 
+            this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gBKToolStripMenuItem.Text = "GBK";
+            this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
+            // 
+            // aSCIIToolStripMenuItem
+            // 
+            this.aSCIIToolStripMenuItem.Name = "aSCIIToolStripMenuItem";
+            this.aSCIIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aSCIIToolStripMenuItem.Text = "ASCII";
+            this.aSCIIToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // FormMain
             // 
@@ -239,6 +284,11 @@
         private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 默认参数ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 字体ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultEncodingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uTF8ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uTF16ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gBKToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aSCIIToolStripMenuItem;
     }
 }
 

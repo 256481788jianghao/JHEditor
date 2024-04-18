@@ -10,5 +10,6 @@ namespace JHEditor
     public class ConfigParam
     {
         public Font defaultFont = null;
+        public Encoding defaultEncoding = null;
     }
 }
